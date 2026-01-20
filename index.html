@@ -338,19 +338,40 @@
   <script src="assets/js/main.js"></script>
   <script>
 document.addEventListener('DOMContentLoaded', function() {
-  function animateProgressBars() {
-    const progressBars = document.querySelectorAll('.progress-bar');
-    progressBars.forEach(bar => {
-      const value = bar.getAttribute('aria-valuenow');
-      if (!bar.style.width) {
-        bar.style.width = value + '%';
+  // Force immediate animation of progress bars
+  const progressBars = document.querySelectorAll('.skills .progress-bar');
+  
+  progressBars.forEach(bar => {
+    const value = bar.getAttribute('aria-valuenow');
+    // Remove the 1px width constraint by setting style directly
+    bar.style.width = '0%';
+    
+    // Trigger reflow to enable animation
+    void bar.offsetWidth;
+    
+    // Animate to the target width
+    setTimeout(() => {
+      bar.style.width = value + '%';
+    }, 30);
+  });
+  
+  // Also make sure they animate if they come into view later
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        progressBars.forEach(bar => {
+          const value = bar.getAttribute('aria-valuenow');
+          bar.style.width = value + '%';
+        });
       }
     });
-  }
-
-  animateProgressBars();
+  }, { threshold: 0.1 });
   
-  window.addEventListener('scroll', animateProgressBars);
+  // Observe the skills section
+  const skillsSection = document.querySelector('#skills');
+  if (skillsSection) {
+    observer.observe(skillsSection);
+  }
 });
 </script>
 </body>
