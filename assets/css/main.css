@@ -1457,3 +1457,34 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/* Media Section Styles */
+.media-container {
+  margin: 15px 0;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.service-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--surface-color);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+/* Make sure videos and iframes are responsive */
+.media-container video,
+.media-container iframe,
+.media-container audio {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Audio player styling */
+.media-container audio {
+  height: 45px;
+}
