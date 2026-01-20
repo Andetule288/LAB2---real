@@ -336,6 +336,28 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to animate progress bars when in view
+  function animateProgressBars() {
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach(bar => {
+      const value = bar.getAttribute('aria-valuenow');
+      // Only animate if not already animated
+      if (!bar.style.width) {
+        bar.style.width = value + '%';
+      }
+    });
+  }
+  
+  // Initial check
+  animateProgressBars();
+  
+  // Check on scroll
+  window.addEventListener('scroll', animateProgressBars);
+});
+</script>
 </body>
 
 </html>
