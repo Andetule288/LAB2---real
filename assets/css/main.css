@@ -1488,3 +1488,10 @@ section,
 .media-container audio {
   height: 45px;
 }
+
+
+.media-container iframe {
+  width: 100%;
+  height: auto;
+  display: block;
+}
